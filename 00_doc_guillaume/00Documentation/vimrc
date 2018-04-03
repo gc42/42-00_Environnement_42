@@ -1,0 +1,81 @@
+set nocompatible	"disable vi compatibility
+
+syntax on			"active la mise en couleur des mots clefs du langage
+" -*- AUTOCONFIG -*-
+autocmd FileType *      set formatoptions=tcql
+   \ nocindent comments&
+autocmd FileType c,cpp  set formatoptions=croql
+   \ cindent comments=sr:/*,mb:**,ex:*/,://
+
+" -*- UI CONFIG -*-
+set number				"Affiche les numeros de ligne
+set cursorline			"Distingue la ligne courante
+"	set cursorcolumn		"Distingue la colonne courante
+set showmatch			"Highlight matching parenthesis
+set wildmenu			"
+"	set colorcolumn=80		"Colorise la Neme colonne
+execute "set colorcolumn=" . join(range(80,335), ',') 
+"	highlight ColorColumn ctermbg=darkgrey
+
+set hlsearch			"Highlight search string in all text
+set incsearch			"Highlight search string interactively
+set autowrite			"Enregistre avant de quitter
+
+set textwidth=120
+set lines=30
+set columns=150
+set winwidth=85
+
+" Mouse
+set mouse=a				"Active la souris dans all modes
+"set mouse=n			"Active qu'en Normal mode
+"set mouse=v			"Active qu'en Visual mode
+"set mouse=i			"Active qu'en Insert mode
+"set mouse=c			"Active qu'en Command-line mode
+"set mouse=h			"All modes when editing a help file
+"set mouse=				"Desactive la souris
+
+set mousemodel=popup	"CTRL-Bouton-Gauche etend la selection
+						"Autres modes:
+						"=extend Shift-Left search word, Left extend selection 
+
+" -*- TAB & SPACES -*-
+set autoindent			"utilise l'identation de la ligne precedente
+set tabstop=4			"Decalage de 4 colonnes avec la touche <TAB>
+set shiftwidth=4		"Ecartement aussi de 4 colonnes des autoindent, est utilise avec cindent
+
+" Show tabs and endlines
+set listchars=tab:▸-      "Represente les \t par deux caracteres comme >---
+
+highlight NonText ctermfg=11			"tiles or arobases
+highlight SpecialKey ctermfg=11
+
+" Show non-wanted char
+highlight ExtraWhitespace ctermbg=9		"9 = rouge
+match ExtraWhitespace /\s\+$/
+
+" Show Intra spaces before text between [tab+espaces|espaces|space+espaces]
+highlight IntraWhitespace ctermbg=9
+match IntraWhitespace  /^\t\+ \+\|^ \+\|^\s+ \+/
+
+
+" -*- ABBREVIATIONS -*-
+ab #d #define
+ab #i #include
+ab #b /****************************************
+ab #e <Space>****************************************/
+ab #l /*-------------------------------------------- */
+ab #g Guillaume CARON<CR>gfmapub@orange.fr
+
+
+
+" -*- KEYS -*-
+
+"Key loader
+let mapleader=" "
+
+" Reload vimrc
+map <leader>s :source ~/.vimrc<CR>
+
+" Show list char
+nmap <leader>l :set list!<CR>
